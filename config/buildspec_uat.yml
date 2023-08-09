@@ -1,0 +1,23 @@
+version: 0.2
+
+env:    
+  variables:
+    bucket: "$bucket"
+    region: "$region"
+    key: "$key"    
+    access_key: "$access_key"
+    secret_key: "$secret_key"
+    s3_bucket: "$s3_bucket"
+
+phases:
+  build:
+    commands:
+
+      - yum install -y yum-utils shadow-utils
+      - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+      - yum -y install terraform
+      - printf 'yes' | terraform init -backend-config="bucket=$bucket" -backend-config="region=$region" -backend-config="key=$key"
+      - terraform workspace list      
+      - terraform workspace select uat || terraform workspace new uat
+      - terraform apply --auto-approve -var "access_key=$access_key" -var "secret_key=$secret_key" -var "s3_bucket=$s3_bucket" -var "region=$region"
+ 
