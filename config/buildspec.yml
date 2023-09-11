@@ -12,9 +12,9 @@ phases:
   build:
     commands:
 
-      - yum install -y yum-utils shadow-utils
-      - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-      - yum -y install terraform
+      - curl -o terraform_1.5.5_linux_arm64.zip https://releases.hashicorp.com/terraform/1.5.5/terraform_1.5.5_linux_arm64.zip
+      - unzip terraform_1.5.5_linux_arm64.zip
+      - chmod 755 terraform
       - printf 'yes' | terraform init -backend-config="bucket=$bucket" -backend-config="region=$region" -backend-config="key=$key"
       - terraform workspace list      
       - terraform workspace select $branch || terraform workspace new $branch
