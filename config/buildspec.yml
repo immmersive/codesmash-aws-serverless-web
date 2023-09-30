@@ -13,6 +13,18 @@ phases:
   build:
     commands:
 
+      - cd code/lambda
+      - npm i
+      - cd src
+      - npm run compile
+      - cp -R ../node_modules ../build
+      - cp ../package.json ../build
+      - cd ../build
+      - ls
+      - zip -r -X lambda_code.zip *
+      - mv lambda_code.zip ../../../
+      - cd ../../..
+
       - curl -o terraform_1.5.5_linux_arm64.zip https://releases.hashicorp.com/terraform/1.5.5/terraform_1.5.5_linux_arm64.zip
       - unzip terraform_1.5.5_linux_arm64.zip
       - chmod 755 terraform
