@@ -1,0 +1,14 @@
+{
+  "lockfileVersion": 1,
+  "scripts": {
+    "compile": "tsc"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.51",
+    "@types/node": "^13.13.13",
+    "aws-sdk": "^2.655.0",
+    "typescript": "^3.8.3"
+  }
+}
