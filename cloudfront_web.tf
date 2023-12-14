@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "cloudfront_web" {
 
     lambda_function_association {
         event_type   = "origin-request"
-        lambda_arn   = var.origin_request_variables[terraform.workspace]
+        lambda_arn   = aws_lambda_function.lambda.qualified_arn
         include_body = false
     }
   }
