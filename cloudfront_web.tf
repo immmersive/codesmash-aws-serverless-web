@@ -27,10 +27,16 @@ resource "aws_cloudfront_distribution" "cloudfront_web" {
     }
  
     viewer_protocol_policy  = "redirect-to-https"
-    default_ttl             = 86400
+    default_ttl             = 0
     min_ttl                 = 0
-    max_ttl                 = 31536000
+    max_ttl                 = 0
     compress                = true 
+
+    lambda_function_association {
+        event_type   = "origin-request"
+        lambda_arn   = var.origin_request_variables[terraform.workspace]
+        include_body = false
+    }
   }
 
   price_class = "PriceClass_All"
