@@ -5,7 +5,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
  
     policy = jsonencode({
     Version = "2012-10-17"
-    Id      = "policy-${var.s3_bucket}-${terraform.workspace}"
+    Id      = "policy-${var.app_name}-${terraform.workspace}"
     Statement = [
       {
         Sid       = "PublicReadGetObject"
