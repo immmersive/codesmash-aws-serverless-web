@@ -27,9 +27,9 @@ resource "aws_cloudfront_distribution" "cloudfront_web" {
     }
  
     viewer_protocol_policy  = "redirect-to-https"
-    default_ttl             = 0
+    default_ttl             = 86400
     min_ttl                 = 0
-    max_ttl                 = 0
+    max_ttl                 = 31536000
     compress                = true 
 
     lambda_function_association {
