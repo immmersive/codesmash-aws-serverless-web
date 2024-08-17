@@ -3,6 +3,8 @@ resource "aws_cloudfront_distribution" "cloudfront_web" {
     is_ipv6_enabled         = true 
     default_root_object     = "index.html"
 
+    depends_on = [time_sleep.sleep15]
+
     viewer_certificate {
         cloudfront_default_certificate = true
     }
