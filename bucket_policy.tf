@@ -1,6 +1,6 @@
 resource "aws_s3_bucket_policy" "bucket_policy" {
 
-    depends_on = [ time_sleep.sleep10 ]
+    depends_on = [ time_sleep.sleep15 ]
     bucket = aws_s3_bucket.s3_web.bucket
  
     policy = jsonencode({
